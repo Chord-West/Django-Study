@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from django.template import loader
 from datetime import datetime
 
+import random
+
 # Create your views here.
 def index(request):
     now = datetime.now()
@@ -21,6 +23,23 @@ def select(request):
 
 
 def result(request):
-    context={ 'numbers' : [1,2,3,4,5,6]
-    } 
+    chosen = int(request.GET['number']) #select에서 입력한수가 chosen에 담김
+    
+    results=[]
+    if chosen >=1 and chosen <=45:
+        results.append(chosen)
+    
+    box =[]
+    for i in range(0,45):
+        if chosen !=i+1:
+            box.append(i+1)
+    
+    random.shuffle(box)
+
+    while len(results) < 6:
+        results.append(box.pop())
+
+    context ={
+        'numbers' : results
+    }
     return render(request,'first/result.html',context)

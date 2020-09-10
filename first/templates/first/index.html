@@ -1,16 +1,9 @@
+{% extends 'first/base.html'%}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% block content%}
     <p>Hello World!</p>
     <img src="{% static 'first/image.jpg'%}" alt="">
     <p>{{current_date}}</p>
     <p>{{current_date|date:"Y년 m월 d일 H시 i분 s초"}}</p>
     <a href="{% url 'select' %}">시작하기</a>
-</body>
-</html>
+{% endblock %}
